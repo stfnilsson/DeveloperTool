@@ -4,7 +4,7 @@
     <!--*-->
     <id>$id$</id>
     <!--*-->
-    <version>1.3.0.0</version>
+    <version>1.4.0.0</version>
     <title>
     </title>
     <!--*-->
@@ -15,6 +15,7 @@
     <projectUrl></projectUrl>
     <iconUrl></iconUrl>
 -->
+    <projectUrl>https://github.com/stfnilsson/DeveloperTool</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!--*-->
     <description>$description$</description>
