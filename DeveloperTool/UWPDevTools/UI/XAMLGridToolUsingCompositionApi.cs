@@ -75,6 +75,7 @@ namespace UWPDevTools.UI
 
             foreach (SpriteVisual drawnLine in _linesDrawn)
             {
+                _control.Children.Remove(drawnLine);
                 // drawnLine.
                 //var animation = CreateFadeAnimation(drawnLine);
                 //drawnLine.StartAnimation(nameof(drawnLine.Opacity), animation);
@@ -86,7 +87,7 @@ namespace UWPDevTools.UI
         private SpriteVisual CreateHorizontalLine(float width, float yOffset)
         {
             SpriteVisual line = _compositor.CreateSpriteVisual();
-            line.Brush = _compositor.CreateColorBrush(GridColor);
+            line.Brush = _compositor.CreateColorBrush(GridLineColor);
             line.Opacity = 0.3f;
             line.Size = new Vector2(width, GridLineSize);
             line.Offset = new Vector3(0, yOffset, 0);
@@ -96,7 +97,7 @@ namespace UWPDevTools.UI
         private SpriteVisual CreateVerticalLine(float length, float xOffset)
         {
             SpriteVisual line = _compositor.CreateSpriteVisual();
-            line.Brush = _compositor.CreateColorBrush(GridColor);
+            line.Brush = _compositor.CreateColorBrush(GridLineColor);
             line.Size = new Vector2(GridLineSize, length);
             line.Offset = new Vector3(xOffset, 0, 0);
             line.Opacity = 0.3f;
