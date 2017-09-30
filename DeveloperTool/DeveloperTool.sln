@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UWPDevTools", "UWPDevTools\UWPDevTools.csproj", "{1CA7CC7D-6CEF-4175-AFAE-6675409CFF86}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleApp", "SampleApp\SampleApp.csproj", "{31840E5C-F9FB-4360-9AB3-4E0F4419F077}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,26 @@ Global
 		{1CA7CC7D-6CEF-4175-AFAE-6675409CFF86}.Release|x64.Build.0 = Release|x64
 		{1CA7CC7D-6CEF-4175-AFAE-6675409CFF86}.Release|x86.ActiveCfg = Release|x86
 		{1CA7CC7D-6CEF-4175-AFAE-6675409CFF86}.Release|x86.Build.0 = Release|x86
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Debug|ARM.ActiveCfg = Debug|ARM
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Debug|ARM.Build.0 = Debug|ARM
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Debug|ARM.Deploy.0 = Debug|ARM
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Debug|x64.ActiveCfg = Debug|x64
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Debug|x64.Build.0 = Debug|x64
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Debug|x64.Deploy.0 = Debug|x64
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Debug|x86.ActiveCfg = Debug|x86
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Debug|x86.Build.0 = Debug|x86
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Debug|x86.Deploy.0 = Debug|x86
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Release|Any CPU.ActiveCfg = Release|x86
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Release|ARM.ActiveCfg = Release|ARM
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Release|ARM.Build.0 = Release|ARM
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Release|ARM.Deploy.0 = Release|ARM
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Release|x64.ActiveCfg = Release|x64
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Release|x64.Build.0 = Release|x64
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Release|x64.Deploy.0 = Release|x64
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Release|x86.ActiveCfg = Release|x86
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Release|x86.Build.0 = Release|x86
+		{31840E5C-F9FB-4360-9AB3-4E0F4419F077}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
