@@ -4,21 +4,21 @@
     <!--*-->
     <id>$id$</id>
     <!--*-->
-    <version>1.4.0.0</version>
-    <title>
+    <version>1.6.0.0</version>
+    <title>Developer Tools for UWP
     </title>
     <!--*-->
     <authors>$author$</authors>
     <owners>$author$</owners>
     <!--
     <licenseUrl></licenseUrl>
-    <projectUrl></projectUrl>
-    <iconUrl></iconUrl>
+
 -->
+    <iconUrl>https://github.com/stfnilsson/DeveloperTool/raw/master/DeveloperTool/images/stfnilssonicon.png</iconUrl>
     <projectUrl>https://github.com/stfnilsson/DeveloperTool</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <!--*-->
-    <description>$description$</description>
+    <description>Developer tools for UWP development</description>
     <!--*-->
     <releaseNotes>XamlGridTool</releaseNotes>
     <copyright>$copyright$</copyright>
