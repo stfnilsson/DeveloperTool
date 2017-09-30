@@ -27,6 +27,11 @@ namespace UWPDevTools.UI
         {
             _canvas.Children.Clear();
 
+            if (!IsVisible)
+            {
+                return;
+            }
+
             var brush = new SolidColorBrush(GridLineColor);
 
             DrawHorizontalLines(newSize.Width, newSize.Height, brush);

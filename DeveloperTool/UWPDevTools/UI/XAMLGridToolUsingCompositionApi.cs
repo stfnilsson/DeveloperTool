@@ -10,9 +10,9 @@ namespace UWPDevTools.UI
 {
     internal class XamlGridToolUsingCompositionApi : XamlGridToolBase, IDisposable
     {
-        private readonly List<SpriteVisual> _linesDrawn = new List<SpriteVisual>();
         private readonly Compositor _compositor;
         private readonly ContainerVisual _control;
+        private readonly List<SpriteVisual> _linesDrawn = new List<SpriteVisual>();
 
         internal XamlGridToolUsingCompositionApi(ContentControl element)
         {
@@ -32,11 +32,17 @@ namespace UWPDevTools.UI
 
         public override void Draw(Size newSize)
         {
-            var width = (float)newSize.Width;
-            var height = (float)newSize.Height;
+            Reset();
+
+            if (!IsVisible)
+            {
+                return;
+            }
+            var width = (float) newSize.Width;
+            var height = (float) newSize.Height;
 
             var verticalStep = (float) VerticalStep;
-            var horizontalStep = (float)HorizontalStep;
+            var horizontalStep = (float) HorizontalStep;
 
             Reset();
 
@@ -55,18 +61,36 @@ namespace UWPDevTools.UI
 
             foreach (SpriteVisual visual in _linesDrawn)
             {
+                visual.Opacity = 0;
                 _control.Children.InsertAtTop(visual);
+                StartShowAnimation(visual);
             }
+        }
 
-            //ScalarKeyFrameAnimation animation = _compositor.CreateScalarKeyFrameAnimation();
+        private void StartShowAnimation(SpriteVisual sprite)
+        {
+            ScalarKeyFrameAnimation animation = _compositor.CreateScalarKeyFrameAnimation();
 
-            //animation.InsertKeyFrame(0.0f, 0.00f);
+            animation.InsertKeyFrame(0.0f, 0.00f);
 
-            //animation.InsertKeyFrame(0.4f, 1.00f);
+            animation.InsertKeyFrame(0.2f, 0.40f);
 
-            //animation.Duration = TimeSpan.FromMilliseconds(2000);
+            animation.Duration = TimeSpan.FromMilliseconds(2000);
 
-            //_control.StartAnimation(nameof(_control.Opacity), animation);
+            sprite.StartAnimation(nameof(sprite.Opacity), animation);
+        }
+
+        private void StartHideAnimation(SpriteVisual sprite)
+        {
+            ScalarKeyFrameAnimation animation = _compositor.CreateScalarKeyFrameAnimation();
+
+            animation.InsertKeyFrame(0.4f, 0.40f);
+
+            animation.InsertKeyFrame(0.2f, 0.00f);
+
+            animation.Duration = TimeSpan.FromMilliseconds(2000);
+
+            sprite.StartAnimation(nameof(sprite.Opacity), animation);
         }
 
         private void Reset()
@@ -75,7 +99,9 @@ namespace UWPDevTools.UI
 
             foreach (SpriteVisual drawnLine in _linesDrawn)
             {
+                StartHideAnimation(drawnLine);
                 _control.Children.Remove(drawnLine);
+
                 // drawnLine.
                 //var animation = CreateFadeAnimation(drawnLine);
                 //drawnLine.StartAnimation(nameof(drawnLine.Opacity), animation);
@@ -103,7 +129,6 @@ namespace UWPDevTools.UI
             line.Opacity = 0.3f;
             return line;
         }
-
 
         //private ScalarKeyFrameAnimation CreateFadeAnimation(SpriteVisual visual)
         //{

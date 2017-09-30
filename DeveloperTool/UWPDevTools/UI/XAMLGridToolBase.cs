@@ -4,6 +4,8 @@ using Windows.UI;
 namespace UWPDevTools.UI {
     internal abstract class XamlGridToolBase : IXamlGridTool
     {
+        public bool IsVisible { get; set; }
+
         public Color GridLineColor { get; set; }
         public double HorizontalStep { get; set; }
         public double VerticalStep { get; set; }

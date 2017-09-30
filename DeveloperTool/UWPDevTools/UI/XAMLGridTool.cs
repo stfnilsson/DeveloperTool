@@ -24,11 +24,17 @@ namespace UWPDevTools.UI
             DependencyProperty.Register("VerticalStep", typeof(double), typeof(XamlGridTool),
                 new PropertyMetadata(12.0));
 
+        public static readonly DependencyProperty IsVisibleProperty =
+            DependencyProperty.Register("IsVisible", typeof(bool), typeof(XamlGridTool),
+                new PropertyMetadata(true));
+
+
         private readonly IXamlGridTool _devGridBase;
 
         public XamlGridTool()
         {
             SizeChanged += (_ , s) => { _devGridBase.Draw(s.NewSize); };
+
 
             if (IsCompositionApiSupported)
             {
@@ -42,11 +48,30 @@ namespace UWPDevTools.UI
             _devGridBase.GridLineSize = GridLineSize;
             _devGridBase.HorizontalStep = HorizontalStep;
             _devGridBase.VerticalStep = VerticalStep;
+            
         }
+
 
         public static bool IsCompositionApiSupported
         {
             get { return ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 3); }
+        }
+
+        public bool IsVisible
+        {
+            get { return (bool)GetValue(IsVisibleProperty); }
+
+            set
+            {
+                SetValue(IsVisibleProperty, value);
+
+                if (_devGridBase == null || _devGridBase.IsVisible == value)
+                {
+                    return;
+                }
+                _devGridBase.IsVisible = value;
+                _devGridBase.Draw(new Size(ActualWidth, ActualHeight));
+            }
         }
 
         public Color GridLineColor
