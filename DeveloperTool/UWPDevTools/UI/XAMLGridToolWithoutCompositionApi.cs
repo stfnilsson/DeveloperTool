@@ -20,7 +20,7 @@ namespace UWPDevTools.UI
             element.VerticalContentAlignment = VerticalAlignment.Stretch;
 
             element.IsHitTestVisible = false;
-            element.Opacity = Opacity;
+            element.Opacity = 0.4;
         }
 
         public override void Draw(Size newSize)
