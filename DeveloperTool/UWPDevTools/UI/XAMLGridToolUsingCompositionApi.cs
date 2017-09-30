@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Numerics;
 using Windows.Foundation;
 using Windows.UI.Composition;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
 
@@ -95,16 +96,11 @@ namespace UWPDevTools.UI
 
         private void Reset()
         {
-            // var animations = new List<ScalarKeyFrameAnimation>();
-
             foreach (SpriteVisual drawnLine in _linesDrawn)
             {
                 StartHideAnimation(drawnLine);
                 _control.Children.Remove(drawnLine);
 
-                // drawnLine.
-                //var animation = CreateFadeAnimation(drawnLine);
-                //drawnLine.StartAnimation(nameof(drawnLine.Opacity), animation);
             }
 
             _linesDrawn.Clear();
@@ -126,20 +122,8 @@ namespace UWPDevTools.UI
             line.Brush = _compositor.CreateColorBrush(GridLineColor);
             line.Size = new Vector2(GridLineSize, length);
             line.Offset = new Vector3(xOffset, 0, 0);
-            line.Opacity = 0.3f;
             return line;
         }
 
-        //private ScalarKeyFrameAnimation CreateFadeAnimation(SpriteVisual visual)
-        //{
-        //    ScalarKeyFrameAnimation animation = _compositor.CreateScalarKeyFrameAnimation();
-
-        //    animation.InsertKeyFrame(1.0f, 0.00f);
-
-        //    animation.InsertKeyFrame(0.0f, 1.00f);
-
-        //    animation.Duration = TimeSpan.FromMilliseconds(2000);
-        //    return animation;
-        //}
     }
 }

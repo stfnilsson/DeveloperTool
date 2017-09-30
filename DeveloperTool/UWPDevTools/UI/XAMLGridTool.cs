@@ -35,9 +35,10 @@ namespace UWPDevTools.UI
         {
             SizeChanged += (_ , s) => { _devGridBase.Draw(s.NewSize); };
 
-
+           
             if (IsCompositionApiSupported)
             {
+          
                 _devGridBase = new XamlGridToolUsingCompositionApi(this);
             }
             else
