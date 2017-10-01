@@ -107,11 +107,9 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UI\XamlGridTool.cs" />
-    <Compile Include="UI\XamlGridToolBase.cs" />
-    <Compile Include="UI\XamlGridToolUsingCompositionApi.cs" />
-    <Compile Include="UI\XamlGridToolWithoutCompositionApi.cs" />
-    <Compile Include="UI\IXamlGridTool.cs" />
+    <Compile Include="UI\XamlGridLine.cs" />
+    <Compile Include="UI\XamlGrid.cs" />
+    <Compile Include="UI\XamlGridRenderer.cs" />
     <EmbeddedResource Include="Properties\UWPDevTools.rd.xml" />
   </ItemGroup>
   <ItemGroup>

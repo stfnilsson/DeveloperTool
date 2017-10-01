@@ -17,10 +17,14 @@ using Windows.UI.Xaml.Navigation;
 
 namespace SampleApp
 {
+    public interface ICustomApplication
+    {
+        Frame AppShell { get; set; }
+    }
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    sealed partial class App : Application, ICustomApplication
     {
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -31,6 +35,8 @@ namespace SampleApp
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
+
+        public Frame AppShell { get; set; }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -66,7 +72,8 @@ namespace SampleApp
                     // When the navigation stack isn't restored navigate to the first page,
                     // configuring the new page by passing required information as a navigation
                     // parameter
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                    rootFrame.Navigate(typeof(AppShell), e.Arguments);
+                    
                 }
                 // Ensure the current window is active
                 Window.Current.Activate();

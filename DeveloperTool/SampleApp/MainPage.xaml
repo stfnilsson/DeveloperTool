@@ -7,65 +7,23 @@
     xmlns:ui="using:UWPDevTools.UI"
     mc:Ignorable="d">
 
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <SplitView
-        DisplayMode="Inline"
-        IsPaneOpen="True"
-        PaneBackground="AntiqueWhite"
-        PanePlacement="Right">
-        <SplitView.Content>
+        <Button
+            Width="144"
+            Height="48"
+            Margin="24,72,0,0"
+            VerticalAlignment="Top">
+            Nothing
+        </Button>
 
+        <Button
+            Width="144" Click="ButtonBase_OnClick"
+            Height="96"
+            Margin="240,12,0,0"
+            VerticalAlignment="Top">
+            Go to details
+        </Button>
 
-            <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
-                <Button
-                    Width="144"
-                    Height="48"
-                    Margin="24,72,0,0"
-                    VerticalAlignment="Top">
-                    HEJ
-                </Button>
-
-                <Button
-                    Width="144"
-                    Height="96"
-                    Margin="240,12,0,0"
-                    VerticalAlignment="Top">
-                    HEJ
-                </Button>
-
-                <ui:XamlGridTool HorizontalStep="{x:Bind XamlGridHorizontalSlider.Value, Mode=TwoWay}" 
-                                 VerticalStep="{x:Bind XamlGridVerticalSlider.Value, Mode=TwoWay}" 
-                                 IsVisible="{x:Bind XamlGridEnableToogle.IsOn, Mode=TwoWay}" />
-
-            </Grid>
-        </SplitView.Content>
-
-        <SplitView.Pane>
-            <StackPanel Margin="24">
-                <ToggleSwitch
-                    x:Name="XamlGridEnableToogle"
-                    OffContent="Enable"
-                    OnContent="Disable" />
-
-                <Slider Minimum="4" Maximum="64"
-                    x:Name="XamlGridHorizontalSlider"
-                    Margin="0,24,0,0"
-                    Header="Horizontal step"
-                    StepFrequency="4"
-                    Value="12" />
-
-                <Slider Minimum="4" Maximum="64"
-                        x:Name="XamlGridVerticalSlider"
-                        Margin="0,24,0,0"
-                        Header="Horizontal step"
-                        StepFrequency="4"
-                        Value="12" />
-
-            </StackPanel>
-        </SplitView.Pane>
-
-    </SplitView>
-
-
+    </Grid>
 </Page>
