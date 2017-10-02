@@ -30,20 +30,10 @@ namespace SampleApp
      
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-
-        
-        }
-
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            var app = App.Current as ICustomApplication;
-            app.AppShell.Navigate(typeof(DetailPage));
-
-       
-
+            var app = Application.Current as ICustomApplication;
+            app?.AppShell.Navigate(typeof(DetailPage));
         }
     }
 }

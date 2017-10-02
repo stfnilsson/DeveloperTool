@@ -8,22 +8,88 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
 
-        <Button
-            Width="144"
-            Height="48"
-            Margin="24,72,0,0"
-            VerticalAlignment="Top">
-            Nothing
-        </Button>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="408" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
 
-        <Button
-            Width="144" Click="ButtonBase_OnClick"
-            Height="96"
-            Margin="240,12,0,0"
-            VerticalAlignment="Top">
-            Go to details
-        </Button>
+        <Grid
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Background="DodgerBlue">
+            <TextBlock
+                Margin="24,0,0,0"
+                VerticalAlignment="Center"
+                Foreground="White"
+                Style="{ThemeResource SubtitleTextBlockStyle}">
+                Subject
+            </TextBlock>
+            <Grid.Transitions>
+                <TransitionCollection>
+                    <EdgeUIThemeTransition Edge="Top" />
+                </TransitionCollection>
+            </Grid.Transitions>
+        </Grid>
+
+        <StackPanel
+            Grid.Row="1"
+            Grid.Column="0"
+            Margin="24">
+
+            <TextBox Width="360" Header="Test 1" />
+
+            <TextBox
+                Width="360"
+                Margin="0,12,0,0"
+                Header="Test 2" />
+
+            <Button
+                Width="144"
+                Height="48"
+                Margin="0,24,0,0"
+                Click="ButtonBase_OnClick">
+                Submit
+            </Button>
+
+            <StackPanel.Transitions>
+                <TransitionCollection>
+                    <EdgeUIThemeTransition Edge="Left" />
+                </TransitionCollection>
+            </StackPanel.Transitions>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <Grid
+                Width="120"
+                Height="120"
+                Margin="24"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="Yellow"
+                BorderBrush="Gold"
+                BorderThickness="12" />
+
+            <Grid
+                Width="120"
+                Height="120"
+                Margin="24"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Background="Red"
+                BorderBrush="Firebrick"
+                BorderThickness="12" />
+            <StackPanel.Transitions>
+                <TransitionCollection>
+                    <EdgeUIThemeTransition Edge="Right" />
+                </TransitionCollection>
+            </StackPanel.Transitions>
+        </StackPanel>
 
     </Grid>
 </Page>

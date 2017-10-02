@@ -6,6 +6,7 @@ using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Metadata;
 using Windows.UI;
+using Windows.UI.Composition.Interactions;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -35,6 +36,8 @@ namespace UWPDevTools.UI
             _renderer = new XamlGridRenderer(this);
         }
 
+       
+
         private List<XamlGridLine> _lines;
 
         public List<XamlGridLine> Lines
@@ -51,32 +54,7 @@ namespace UWPDevTools.UI
             }
         }
 
-        //   private List<XamlGridLine> _gridLines;
-
-        //public List<XamlGridLine> GridLines
-        //{
-        //    get { return _gridLines; }
-        //    set
-        //    {
-        //        _gridLines = value;
-        //        _renderer.GridLines = value.ToList();
-        //    }
-        //}
-        //{
-
-        //    get { return (List<XamlGridLine>)GetValue(GridLinesProperty); }
-
-        //    set
-
-        //    {
-
-        //        SetValue(GridLinesProperty, value);
-
-        //   //     _renderer.Draw(new Size(ActualWidth,ActualHeight));
-
-        //    }
-
-        //}
+      
 
         private bool IsCompositionApiSupported
         {

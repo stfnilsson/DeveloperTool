@@ -29,8 +29,8 @@ namespace SampleApp
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            var app = App.Current as ICustomApplication;
-            app.AppShell.GoBack();
+            var app = Application.Current as ICustomApplication;
+            app?.AppShell.GoBack();
         }
     }
 }

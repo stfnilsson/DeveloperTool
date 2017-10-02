@@ -7,8 +7,14 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="24">
 
-        <Button VerticalAlignment="Top" Margin="48" Height="24" Width="128" Click="ButtonBase_OnClick">Go back</Button>
+        <Button VerticalAlignment="Top"  Height="48" Width="120" Click="ButtonBase_OnClick" Content="Go back">
+            <Button.Transitions>
+                <TransitionCollection >
+                    <EntranceThemeTransition></EntranceThemeTransition>
+                </TransitionCollection>
+            </Button.Transitions>
+        </Button>
     </Grid>
 </Page>

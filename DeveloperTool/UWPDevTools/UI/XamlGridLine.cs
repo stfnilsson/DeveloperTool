@@ -1,4 +1,5 @@
 ﻿using Windows.UI;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 
 namespace UWPDevTools.UI {
@@ -8,8 +9,9 @@ namespace UWPDevTools.UI {
         {
             GridColor = Colors.DeepSkyBlue;
             GridSize = 1;
-            HorizontalStep = 12;
-            VerticalStep = 12;
+            HorizontalStep = 0;
+            VerticalStep = 0;
+            
         }
 
         public Color GridColor { get; set; }

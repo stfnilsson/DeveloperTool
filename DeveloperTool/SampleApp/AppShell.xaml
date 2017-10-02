@@ -2,16 +2,15 @@
     x:Class="SampleApp.AppShell"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:SampleApp"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="using:SampleApp"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="using:UWPDevTools.UI"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" BorderBrush="DodgerBlue">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Frame
             x:Name="ContentFrame"
-            Background="Gold"
             Navigated="ContentFrame_OnNavigated"
             Navigating="ContentFrame_OnNavigating">
             <Frame.ContentTransitions>
@@ -19,24 +18,6 @@
             </Frame.ContentTransitions>
         </Frame>
 
-        <ui:XamlGrid x:Name="XamlGridControl">
-            <!--<ui:XamlGrid.Lines>
-             
-                    <ui:XamlGridLine
-                        GridColor="Gold"
-                        GridSize="1"
-                        HorizontalStep="12"
-                        VerticalStep="12" />
-
-                    <ui:XamlGridLine
-                        GridColor="DodgerBlue"
-                        GridSize="1"
-                        HorizontalStep="24"
-                        VerticalStep="24" />
-              
-            
-
-            </ui:XamlGrid.Lines>-->
-        </ui:XamlGrid>
+        <ui:XamlGrid x:Name="XamlGridControl" />
     </Grid>
 </Page>
