@@ -1,3 +1,4 @@
+
 # Developer Tools
 
 ## UWP ##
@@ -9,4 +10,27 @@ This control adds lines (defined by the developer) to an app without blocking th
 ![Alt text](/../master/DeveloperTool/images/XamlGridTool.PNG?raw=true "Optional Title")
 
 Video
+
+'<XamlGridControl.Lines = new List<XamlGridLine>
+{
+    new XamlGridLine
+    {
+        GridColor = Colors.Red,
+        VerticalStep = 0,
+        HorizontalStep = 24
+    },
+    new XamlGridLine
+    {
+        GridColor = Colors.Gold,
+        VerticalStep = 48,
+        HorizontalStep = 0
+    },
+    new XamlGridLine
+    {
+        GridColor = Colors.LightGray,
+        VerticalStep = 12,
+        HorizontalStep = 12
+    }
+};'
+  
 https://github.com/stfnilsson/DeveloperTool/blob/master/DeveloperTool/images/XamlGrid.mp4
