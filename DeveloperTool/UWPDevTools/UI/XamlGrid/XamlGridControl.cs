@@ -1,35 +1,23 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using Windows.Foundation;
 using Windows.Foundation.Metadata;
-using Windows.UI;
-using Windows.UI.Composition.Interactions;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
-namespace UWPDevTools.UI
+namespace UWPDevTools.UI.XamlGrid
 {
-    public class XamlGrid : ContentControl, IDisposable
+    /// <summary>
+    /// XamlGrid from XAML
+    /// </summary>
+    public class XamlGridControl : ContentControl, IDisposable
     {
         public static readonly DependencyProperty LinesProperty = DependencyProperty.Register("Lines",
-            typeof(List<XamlGridLine>), typeof(XamlGrid), new PropertyMetadata(null));
-
-
-        public List<XamlGridLine> Lines
-        {
-            get { return (List<XamlGridLine>)GetValue(LinesProperty); }
-            set
-            {
-                SetValue(LinesProperty, value);
-            }
-        }
+            typeof(List<XamlGridLine>), typeof(XamlGridControl), new PropertyMetadata(null));
 
         private XamlGridRenderer _renderer;
 
-        public XamlGrid()
+        public XamlGridControl()
         {
             SizeChanged += (_, s) =>
             {
@@ -40,12 +28,17 @@ namespace UWPDevTools.UI
                 _renderer?.Draw(s.NewSize);
             };
 
-       
             if (!IsCompositionApiSupported)
             {
                 throw new NotSupportedException("Composition API not supoorted");
             }
             _renderer = new XamlGridRenderer(this);
+        }
+
+        public List<XamlGridLine> Lines
+        {
+            get { return (List<XamlGridLine>) GetValue(LinesProperty); }
+            set { SetValue(LinesProperty, value); }
         }
 
         private bool IsCompositionApiSupported

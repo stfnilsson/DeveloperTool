@@ -1,9 +1,8 @@
 ﻿using Windows.UI;
-using Windows.UI.Core;
-using Windows.UI.Xaml;
 
-namespace UWPDevTools.UI {
-    public class XamlGridLine: DependencyObject
+namespace UWPDevTools.UI.XamlGrid
+{
+    public class XamlGridLine
     {
         public XamlGridLine()
         {
@@ -11,7 +10,8 @@ namespace UWPDevTools.UI {
             GridSize = 1;
             HorizontalStep = 0;
             VerticalStep = 0;
-            
+            Opacity = 0.3f;
+            ShowStepMarker = false;
         }
 
         public Color GridColor { get; set; }
@@ -21,5 +21,9 @@ namespace UWPDevTools.UI {
         public int HorizontalStep { get; set; }
 
         public int VerticalStep { get; set; }
+
+        public float Opacity { get; set; }
+
+        public bool ShowStepMarker { get;set;}
     }
 }
