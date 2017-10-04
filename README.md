@@ -1,6 +1,9 @@
 
 # Developer Tools
 
+Nuget package
+https://www.nuget.org/packages/UWPDevTools/
+
 ## UWP ##
 
 XamlGrid for UI alignment (Composition api support is required)
