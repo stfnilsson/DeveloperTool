@@ -10,7 +10,7 @@ This control adds lines (defined by the developer) to an app without blocking th
 ![Alt text](/../master/DeveloperTool/images/XamlGridTool.PNG?raw=true "Optional Title")
 
 Video
-
+'''c#
 <XamlGridControl.Lines = new List<XamlGridLine>
 {
     new XamlGridLine
@@ -32,5 +32,6 @@ Video
         HorizontalStep = 12
     }
 };
+'''
   
 https://github.com/stfnilsson/DeveloperTool/blob/master/DeveloperTool/images/XamlGrid.mp4
