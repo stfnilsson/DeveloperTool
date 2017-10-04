@@ -14,6 +14,18 @@ namespace UWPDevTools.UI
 {
     public class XamlGrid : ContentControl, IDisposable
     {
+        public static readonly DependencyProperty LinesProperty = DependencyProperty.Register("Lines",
+            typeof(List<XamlGridLine>), typeof(XamlGrid), new PropertyMetadata(null));
+
+
+        public List<XamlGridLine> Lines
+        {
+            get { return (List<XamlGridLine>)GetValue(LinesProperty); }
+            set
+            {
+                SetValue(LinesProperty, value);
+            }
+        }
 
         private XamlGridRenderer _renderer;
 
@@ -35,26 +47,6 @@ namespace UWPDevTools.UI
             }
             _renderer = new XamlGridRenderer(this);
         }
-
-       
-
-        private List<XamlGridLine> _lines;
-
-        public List<XamlGridLine> Lines
-        {
-            get { return _lines; }
-            set
-            {
-                _lines = value;
-                if (value == null)
-                {
-                    return;
-                }
-                _renderer.GridLines = value;
-            }
-        }
-
-      
 
         private bool IsCompositionApiSupported
         {

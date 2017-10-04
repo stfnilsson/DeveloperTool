@@ -18,6 +18,12 @@
             </Frame.ContentTransitions>
         </Frame>
 
-        <ui:XamlGrid x:Name="XamlGridControl" />
-    </Grid>
+		<ui:XamlGrid x:Name="XamlGridControl" >
+			<ui:XamlGrid.Lines>
+				<ui:XamlGridLine />
+
+			</ui:XamlGrid.Lines>
+			
+		</ui:XamlGrid>
+	</Grid>
 </Page>
