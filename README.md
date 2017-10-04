@@ -14,7 +14,7 @@ This control adds lines (defined by the developer) to an app without blocking th
 
 ### Sample ###
 ```c#
-<XamlGridControl.Lines = new List<XamlGridLine>
+XamlGridControl.Lines = new List<XamlGridLine>
 {
     new XamlGridLine
     {
