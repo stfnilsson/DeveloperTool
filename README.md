@@ -11,7 +11,7 @@ This control adds lines (defined by the developer) to an app without blocking th
 
 Video
 
-'<XamlGridControl.Lines = new List<XamlGridLine>
+<XamlGridControl.Lines = new List<XamlGridLine>
 {
     new XamlGridLine
     {
@@ -31,6 +31,6 @@ Video
         VerticalStep = 12,
         HorizontalStep = 12
     }
-};'
+};
   
 https://github.com/stfnilsson/DeveloperTool/blob/master/DeveloperTool/images/XamlGrid.mp4
