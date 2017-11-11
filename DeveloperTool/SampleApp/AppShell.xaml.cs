@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Windows.Foundation;
 using Windows.UI;
@@ -6,22 +7,20 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Navigation;
+using UWPDevTools.Helper;
 using UWPDevTools.UI;
-using UWPDevTools.UI.XamlGrid;
+using UWPDevTools.UI.Developer.XamlGrid;
 
 namespace SampleApp
 {
     public sealed partial class AppShell : Page
     {
-        private XamlGridRenderer _xamlGridRenderer;
+        public static CompositionSupportHelper CompositionSupport;
 
+        private XamlGridRenderer _xamlGridRenderer;
         public AppShell()
         {
             InitializeComponent();
-
-#if DEBUG
-            SetUpXamlGrid();
-#endif
 
             var app = Application.Current as ICustomApplication;
             if (app != null)
@@ -30,6 +29,10 @@ namespace SampleApp
             }
 
             ContentFrame.Navigate(typeof(MainPage));
+
+#if DEBUG
+             SetUpXamlGrid(); 
+#endif
         }
 
         public Frame NavigationFrame
@@ -40,7 +43,9 @@ namespace SampleApp
 
         private void SetUpXamlGrid()
         {
-            _xamlGridRenderer = new XamlGridRenderer(ContentFrame);
+            CompositionSupport = new CompositionSupportHelper(ContentFrame);
+
+            _xamlGridRenderer = new XamlGridRenderer(CompositionSupport);
 
             var xamlGridLines = new List<XamlGridLine>
             {
@@ -67,35 +72,30 @@ namespace SampleApp
             };
             _xamlGridRenderer.GridLines = xamlGridLines;
 
-            SizeChanged += (_, e) =>
+            CompositionSupport.SizeChanged = newSize =>
             {
                 if (_xamlGridRenderer?.GridLines == null || !_xamlGridRenderer.GridLines.Any())
                 {
                     return;
                 }
-                _xamlGridRenderer?.Draw(e.NewSize);
+                _xamlGridRenderer?.Draw(newSize);
+            };
+    
+            ContentFrame.RightTapped += (_, e) =>
+            {
+                if (_xamlGridRenderer.IsEnabled)
+                {
+                    _xamlGridRenderer.Clear();
+                }
+                else
+                {
+                    _xamlGridRenderer.Draw(new Size(ActualWidth, ActualWidth));
+                }
             };
 
-            ContentFrame.RightTapped += ContentFrame_RightTapped;
-        }
+            CompositionSupport.ControlInFocus = _xamlGridRenderer.ShowMeasurement;
 
-       
-
-        private void ContentFrame_RightTapped(object sender, RightTappedRoutedEventArgs e)
-        {
-            ToogleXamlGrid();
-        }
-
-        private void ToogleXamlGrid()
-        {
-            if (_xamlGridRenderer.IsEnabled)
-            {
-                _xamlGridRenderer.Clear();
-            }
-            else
-            {
-                _xamlGridRenderer.Draw(new Size(ActualWidth, ActualWidth));
-            }
+            CompositionSupport.ControlLostFocus = _xamlGridRenderer.HideMeasurement;
         }
 
         private void ContentFrame_OnNavigated(object sender, NavigationEventArgs e) { }

@@ -65,29 +65,29 @@
         </StackPanel>
 
         <StackPanel Grid.Row="1" Grid.Column="1">
-            <Grid
+
+            <ui:ShadowControl  x:Name="ShadowControlInstance"
+                Margin="0,24,0,24"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top">
+                <Grid
+                    Width="120"
+                    Height="120"
+                    Background="Red"
+                    BorderBrush="Firebrick"
+                    BorderThickness="12" />
+            </ui:ShadowControl>
+
+            <Grid x:Name="MasterContentPane"
                 Width="120"
                 Height="120"
-                Margin="24"
                 HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Background="Yellow"
-                BorderBrush="Gold"
+                Background="Gold"
+                BorderBrush="Goldenrod"
                 BorderThickness="12" />
 
-            <Grid
-                Width="120"
-                Height="120"
-                Margin="24"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Background="Red"
-                BorderBrush="Firebrick"
-                BorderThickness="12" />
             <StackPanel.Transitions>
-                <TransitionCollection>
-                    <EdgeUIThemeTransition Edge="Right" />
-                </TransitionCollection>
+              
             </StackPanel.Transitions>
         </StackPanel>
 

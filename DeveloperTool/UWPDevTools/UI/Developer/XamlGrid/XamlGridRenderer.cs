@@ -3,46 +3,100 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
 using Windows.Foundation;
-using Windows.Foundation.Metadata;
 using Windows.UI;
 using Windows.UI.Composition;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Hosting;
+using Windows.UI.Xaml.Media;
+using UWPDevTools.Helper;
 
-namespace UWPDevTools.UI.XamlGrid
+namespace UWPDevTools.UI.Developer.XamlGrid
 {
-    public class XamlGridRenderer : IDisposable
+    public class XamlGridRenderer
     {
-        private readonly Compositor _compositor;
-        private readonly ContainerVisual _control;
-
         //TODO: Remove state
         private readonly List<SpriteVisual> _linesDrawn = new List<SpriteVisual>();
 
-        public XamlGridRenderer(UIElement element)
-        {
-            if (!IsCompositionApiSupported)
-            {
-                throw  new PlatformNotSupportedException("Composition API support requried");
-            }
-            _compositor = ElementCompositionPreview.GetElementVisual(element).Compositor;
-            _control = _compositor.CreateContainerVisual();
+        private readonly CompositionSupportHelper _compositionSupportHelper;
 
-            ElementCompositionPreview.SetElementChildVisual(element, _control);
+        public XamlGridRenderer(Control mainControl)
+        {
+            _compositionSupportHelper = new CompositionSupportHelper(mainControl);
+        }
+        public XamlGridRenderer(CompositionSupportHelper compositionSupportHelper)
+        {
+            _compositionSupportHelper = compositionSupportHelper ?? throw new ArgumentNullException(nameof(compositionSupportHelper));
         }
 
         public List<XamlGridLine> GridLines { get; set; }
 
-        public void Dispose()
-        {
-            Clear();
 
-            _compositor?.Dispose();
-            _control?.Dispose();
+        private SpriteVisual measurementSprite;
+        public void ShowMeasurement(FrameworkElement element)
+        {
+            if (measurementSprite != null)
+            {
+                return;
+            }
+
+          
+            var ttv = element.TransformToVisual(Window.Current.Content);
+            Point screenCoords = ttv.TransformPoint(new Point(0, 0));
+            
+            float x = (float)(screenCoords.X + element.ActualWidth -10);
+            float y = (float)(screenCoords.Y + -10.0);
+            Vector3 offset = new Vector3(x, y,0);
+         
+
+            measurementSprite = _compositionSupportHelper.Compositor.CreateSpriteVisual();
+
+            var brush = _compositionSupportHelper.Compositor.CreateColorBrush(Colors.Black);
+            measurementSprite.Brush = brush;
+
+            measurementSprite.Size = new Vector2(20,20);
+            measurementSprite.Offset = offset;
+
+           
+            label.Foreground = new SolidColorBrush(Colors.White);
+            label.Text = "hej";
+            
+
+            label.TransformToVisual()
+            var fontVisual = ElementCompositionPreview.GetElementVisual(label);
+
+
+            _compositionSupportHelper.VisualRoot.Children.InsertAtTop(measurementSprite);
+            _compositionSupportHelper.VisualRoot.Children.InsertAtTop(fontVisual);
+
+
+            //       ElementCompositionPreview.SetElementChildVisual(element, compositionSupportHelper.VisualRoot);
+
+
+        }
+
+        public void HideMeasurement(FrameworkElement element)
+        {
+            if (measurementSprite == null)
+            {
+                return;
+            }
+          //  _compositionSupportHelper.VisualRoot.Children.Remove(measurementSprite);
+
+            //measurementSprite = null;
+            //var visual = ElementCompositionPreview.GetElementVisual(element);
+
+            //compositionSupportHelper.VisualRoot.Children.InsertAtTop(visual);
+
+
         }
 
         public void Draw(Size newSize)
         {
+            if (_compositionSupportHelper?.VisualRoot == null)
+            {  
+                return;
+            }
             Clear();
 
             if (GridLines == null || !GridLines.Any())
@@ -72,7 +126,7 @@ namespace UWPDevTools.UI.XamlGrid
 
             foreach (SpriteVisual visual in _linesDrawn)
             {
-                _control.Children.InsertAtTop(visual);
+                _compositionSupportHelper.VisualRoot.Children.InsertAtTop(visual);
             }
         }
 
@@ -89,17 +143,11 @@ namespace UWPDevTools.UI.XamlGrid
             }
             foreach (SpriteVisual drawnLine in _linesDrawn)
             {
-                _control.Children.Remove(drawnLine);
+                _compositionSupportHelper.VisualRoot.Children.Remove(drawnLine);
             }
 
             _linesDrawn.Clear();
         }
-
-        private bool IsCompositionApiSupported
-        {
-            get { return ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 3); }
-        }
-
 
         private List<SpriteVisual> DrawGrid(XamlGridLine gridLine, float controlWidth, float controlHeight)
         {
@@ -151,8 +199,8 @@ namespace UWPDevTools.UI.XamlGrid
 
         private SpriteVisual CreateHorizontalLine(float width, float yOffset, Color gridLineColor, int gridLineSize, float opacity)
         {
-            SpriteVisual line = _compositor.CreateSpriteVisual();
-            line.Brush = _compositor.CreateColorBrush(gridLineColor);
+            SpriteVisual line = _compositionSupportHelper.Compositor.CreateSpriteVisual();
+            line.Brush = _compositionSupportHelper.Compositor.CreateColorBrush(gridLineColor);
             line.Opacity = opacity;
             line.Size = new Vector2(width, gridLineSize);
             line.Offset = new Vector3(0, yOffset, 0);
@@ -162,8 +210,8 @@ namespace UWPDevTools.UI.XamlGrid
 
         private SpriteVisual CreateVerticalLine(float length, float xOffset, Color gridLineColor, int gridLineSize, float opacity)
         {
-            SpriteVisual line = _compositor.CreateSpriteVisual();
-            line.Brush = _compositor.CreateColorBrush(gridLineColor);
+            SpriteVisual line = _compositionSupportHelper.Compositor.CreateSpriteVisual();
+            line.Brush = _compositionSupportHelper.Compositor.CreateColorBrush(gridLineColor);
             line.Size = new Vector2(gridLineSize, length);
             line.Offset = new Vector3(xOffset, 0, 0);
             line.Opacity = opacity;

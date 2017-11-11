@@ -1,6 +1,6 @@
 ﻿using Windows.UI;
 
-namespace UWPDevTools.UI.XamlGrid
+namespace UWPDevTools.UI.Developer.XamlGrid
 {
     public class XamlGridLine
     {
